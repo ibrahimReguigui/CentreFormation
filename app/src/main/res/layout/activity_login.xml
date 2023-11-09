@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
+    tools:context=".activity.Login"
     android:background="@drawable/background">
 
     <TextView
@@ -20,9 +20,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username"
+        android:id="@+id/EmailInSignIn"
         android:layout_below="@id/signintext"
-        android:hint="Username"
+        android:hint="Email"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:layout_margin="20dp"
@@ -34,10 +34,10 @@
 
     <EditText
         android:layout_margin="20dp"
-        android:id="@+id/password"
+        android:id="@+id/passwordInSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/username"
+        android:layout_below="@id/EmailInSignIn"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -53,21 +53,24 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
+        android:layout_below="@id/passwordInSignIn"
         android:layout_centerHorizontal="true"
         android:text="Login"
-        android:id="@+id/btnlogin"
+        android:id="@+id/btnloginInSignIn"
         android:layout_margin="20dp"/>
+
     <TextView
+        android:id="@+id/goToRegisterInSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New user ? Register here"
-        android:layout_below="@+id/btnlogin"
-        android:layout_margin="20dp"
+        android:layout_below="@+id/btnloginInSignIn"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:id="@+id/goToRegister"
-        />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="New user ? Register here"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

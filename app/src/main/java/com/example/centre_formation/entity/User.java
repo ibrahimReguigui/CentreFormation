@@ -1,18 +1,58 @@
-package com.example.centre_formation;
+package com.example.centre_formation.entity;
 
+import androidx.annotation.InspectableProperty;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "user_table")
 public class User {
-
+    @PrimaryKey(autoGenerate = true)
     private int id;
-    private String firstName,LastName,adress,status,insritEn;
+    @ColumnInfo(name = "firstName")
+    private String firstName;
+    @ColumnInfo(name = "LastName")
+    private String LastName;
+    @ColumnInfo(name = "adress")
+    private String adress;
+    @ColumnInfo(name = "status")
+    private String status;
+    @ColumnInfo(name = "insritEn")
+    private String insritEn;
+    @ColumnInfo(name = "email")
+    private String email;
+    @ColumnInfo(name = "phoneNumber")
     private int phoneNumber;
+    @ColumnInfo(name = "role")
+    private String role;
 
-    public User(String firstName, String lastName, String adress, String status, String insritEn, int phoneNumber) {
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String adress, String status, String insritEn, int phoneNumber, String role) {
         this.firstName = firstName;
         LastName = lastName;
         this.adress = adress;
         this.status = status;
         this.insritEn = insritEn;
         this.phoneNumber = phoneNumber;
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public int getId() {
