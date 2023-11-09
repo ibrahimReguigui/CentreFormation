@@ -9,15 +9,13 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 
 public class Login extends AppCompatActivity {
-
+    TextView userName=findViewById(R.id.username);
+    TextView password=findViewById(R.id.password);
+    MaterialButton btnLogin=findViewById(R.id.btnlogin);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        TextView userName=findViewById(R.id.username);
-        TextView password=findViewById(R.id.password);
-        MaterialButton btnLogin=findViewById(R.id.btnlogin);
 
         btnLogin.setOnClickListener(e->{
             if (userName.getText().toString().equals("admin") &&
