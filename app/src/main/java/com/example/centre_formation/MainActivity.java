@@ -20,7 +20,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private AppDataBase database ;
-    private List<User> userList = new ArrayList<>();
+
     SharedPreferences shared;
     TextView user;
     Button logout;
@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         database = AppDataBase.getAppDatabase(this);
-        userList = database.userDao().getAllUser();
 
         Button login=findViewById(R.id.goToLogin);
         Button register=findViewById(R.id.goToRegister);

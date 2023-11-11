@@ -9,6 +9,7 @@ import androidx.room.Update;
 import com.example.centre_formation.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Dao
 public interface UserDao {
@@ -18,8 +19,8 @@ public interface UserDao {
     void deleteUser(User user);
     @Query("SELECT * FROM user_table")
     List<User> getAllUser();
-    @Query("SELECT * FROM user_table WHERE email=:email")
-    User getUserByEmail(String email);
+    @Query("SELECT * FROM user_table WHERE email = :email")
+    Optional<User> getUserByEmail(String email);
     @Update
     void updateUser(User user);
 }

@@ -2,7 +2,9 @@ package com.example.centre_formation.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import com.google.android.material.button.MaterialButton;
 public class Registration extends AppCompatActivity {
     private AppDataBase database ;
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +45,21 @@ public class Registration extends AppCompatActivity {
                 User user=new User(firstName.getText().toString(),lastName.getText().toString(),"adresse",
                         "true","classe",email.getText().toString(),21342323, "STUDENT",password.getText().toString());
 
-                database.userDao().addUser(user);
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        database.userDao().addUser(user);
+                        return null;
+                    }
 
-                Toast.makeText(this, "Registration successfull", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, Login.class);
-                startActivity(intent);
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        // Display registration success message and navigate to login activity
+                        Toast.makeText(Registration.this, "Registration successful", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Registration.this, Login.class);
+                        startActivity(intent);
+                    }
+                }.execute();
             }
         });
     }

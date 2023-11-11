@@ -29,6 +29,7 @@ public class Login extends AppCompatActivity {
 
         myPref=getSharedPreferences(PREF,MODE_PRIVATE);
         SharedPreferences.Editor editor=myPref.edit();
+        database = AppDataBase.getAppDatabase(this);
 
          email=findViewById(R.id.EmailInSignIn);
         TextView password=findViewById(R.id.passwordInSignIn);
@@ -36,7 +37,8 @@ public class Login extends AppCompatActivity {
         TextView register=findViewById(R.id.goToRegisterInSignIn);
 
         btnLogin.setOnClickListener(e->{
-            User user=database.userDao().getUserByEmail(email.toString());
+            if (database != null) {
+                User user=database.userDao().getUserByEmail(email.getText().toString()).get();
             if (user!=null && user.getPassword().equals(password.getText().toString())){
                 Gson gson = new Gson();
                 String userJson = gson.toJson(user);
@@ -50,7 +52,9 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }else
                 Toast.makeText(this,"Wrong credentials",Toast.LENGTH_LONG).show();
-        });
+        }else        Toast.makeText(this,"No database",Toast.LENGTH_LONG).show();
+                }
+        );
 
 
         register.setOnClickListener(e->{
