@@ -8,15 +8,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.centre_formation.R;
+import com.example.centre_formation.database.AppDataBase;
+import com.example.centre_formation.entity.User;
 import com.google.android.material.button.MaterialButton;
 
 public class Registration extends AppCompatActivity {
-
+    private AppDataBase database ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        database = AppDataBase.getAppDatabase(this);
 
         TextView email = findViewById(R.id.email);
         TextView firstName = findViewById(R.id.firstName);
@@ -35,6 +39,11 @@ public class Registration extends AppCompatActivity {
             if (!password.getText().toString().equals(repassword.getText().toString())) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
             }else {
+                User user=new User(firstName.getText().toString(),lastName.getText().toString(),"adresse",
+                        "true","classe",email.getText().toString(),21342323, "STUDENT",password.getText().toString());
+
+                database.userDao().addUser(user);
+
                 Toast.makeText(this, "Registration successfull", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, Login.class);
                 startActivity(intent);

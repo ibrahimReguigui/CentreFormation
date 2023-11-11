@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         database = AppDataBase.getAppDatabase(this);
-        userList = database.userDao().getAll();
+        userList = database.userDao().getAllUser();
 
         Button login=findViewById(R.id.goToLogin);
         Button register=findViewById(R.id.goToRegister);
@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         logout.setOnClickListener(e->{
             editor.clear();
             editor.commit();
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
         });
 
     }

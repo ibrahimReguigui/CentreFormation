@@ -25,8 +25,30 @@ public class User {
     private int phoneNumber;
     @ColumnInfo(name = "role")
     private String role;
+    @ColumnInfo(name = "password")
+    private String password;
 
     public User() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User(String firstName, String lastName, String adress, String status, String insritEn, String email, int phoneNumber, String role, String password) {
+        this.firstName = firstName;
+        LastName = lastName;
+        this.adress = adress;
+        this.status = status;
+        this.insritEn = insritEn;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.password = password;
     }
 
     public User(String firstName, String lastName, String adress, String status, String insritEn, int phoneNumber, String role) {
