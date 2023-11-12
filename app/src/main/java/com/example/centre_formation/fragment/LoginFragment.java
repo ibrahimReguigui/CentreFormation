@@ -16,12 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.centre_formation.MainActivity;
-import com.example.centre_formation.Portail;
 import com.example.centre_formation.R;
-import com.example.centre_formation.activity.Registration;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.User;
-import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 
 public class LoginFragment extends Fragment {

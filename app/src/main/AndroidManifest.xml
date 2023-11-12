@@ -23,12 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.Profile"
-            android:exported="false" />
-        <activity
-            android:name=".activity.Registration"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/AppTheme" />
