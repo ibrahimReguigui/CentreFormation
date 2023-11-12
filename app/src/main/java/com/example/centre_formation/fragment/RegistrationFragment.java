@@ -21,7 +21,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class RegistrationFragment extends Fragment {
     MaterialButton register;
-    TextView email, firstName, lastName, password, repassword;
+    TextView email, firstName, lastName, password, repassword,btnLogin;
     AppDataBase database;
 
     @Override
@@ -42,6 +42,12 @@ public class RegistrationFragment extends Fragment {
         password = view.findViewById(R.id.passwordInRegistrationfrag);
         repassword = view.findViewById(R.id.repasswordInRegistrationfrag);
 
+        btnLogin=view.findViewById(R.id.goToLoginInRegistrationfrag);
+        btnLogin.setOnClickListener(e -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameInPortail, new LoginFragment())
+                    .commit();
+                });
 
         register = view.findViewById(R.id.btnRegisterInRegistrationfrag);
         register.setOnClickListener(e -> {

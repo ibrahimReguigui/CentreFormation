@@ -7,17 +7,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.centre_formation.activity.Registration;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.User;
+import com.example.centre_formation.fragment.ConnectedHomeFragment;
+import com.example.centre_formation.fragment.HomeFragment;
 import com.example.centre_formation.fragment.LoginFragment;
+import com.example.centre_formation.fragment.ProfileFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
@@ -26,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    SharedPreferences shared;
     public static final String PREF = "pref";
+    SharedPreferences shared;
     TextView userEmailInHeader, userNameInHeader;
     Button logout;
 
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = shared.edit();
 
         database = AppDataBase.getAppDatabase(this);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new ConnectedHomeFragment())
+                .commit();
+
+        NavigationView navigationView = findViewById(R.id.navviewInMain);
+        View headerView = navigationView.getHeaderView(0);
+
+        userNameInHeader = headerView.findViewById(R.id.userNameInHeader);
+        userEmailInHeader = headerView.findViewById(R.id.userEmailInHeader);
+
+        String userJson = shared.getString("connectedUser", "null");
+        Gson gson = new Gson();
+        User userJS = gson.fromJson(userJson, User.class);
+        userNameInHeader.setText(userJS.getFirstName());
+        userEmailInHeader.setText(userJS.getEmail());
+
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navviewInMain);
@@ -69,16 +92,22 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.loginInMenu) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
+                if (item.getItemId() == R.id.homeInMenu) {
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.fragment_container, new ConnectedHomeFragment()).commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+                if (item.getItemId() == R.id.profileInMenu) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new ProfileFragment()).commit();
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 }
                 if (item.getItemId() == R.id.logoutInMenu) {
                     editor.clear();
                     editor.commit();
-                    Intent intent = getIntent();
-                    finish();
+                    Intent intent = new Intent(MainActivity.this, Portail.class);
                     startActivity(intent);
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
@@ -87,9 +116,5 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
-
-
 }

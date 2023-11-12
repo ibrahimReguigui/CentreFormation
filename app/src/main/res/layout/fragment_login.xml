@@ -62,7 +62,7 @@
         android:text="Login" />
 
     <TextView
-        android:id="@+id/goToRegisterInSignIn"
+        android:id="@+id/goToRegisterInLoginFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnloginInLoginFrag"

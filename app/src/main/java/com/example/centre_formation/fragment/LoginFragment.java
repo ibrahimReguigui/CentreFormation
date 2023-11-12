@@ -42,7 +42,7 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        myPref = getActivity().getSharedPreferences(Portail.PREF, Context.MODE_PRIVATE);
+        myPref = getActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = myPref.edit();
 
         database = AppDataBase.getAppDatabase(getActivity());
@@ -50,10 +50,10 @@ public class LoginFragment extends Fragment {
         email = view.findViewById(R.id.emailInLoginFrag);
         password = view.findViewById(R.id.passwordInLoginFrag);
         btnLogin = view.findViewById(R.id.btnloginInLoginFrag);
-        register = view.findViewById(R.id.goToRegisterInSignIn);
+        register = view.findViewById(R.id.goToRegisterInLoginFrag);
 
         btnLogin.setOnClickListener(e -> {
-            User user = database.userDao().getUserByEmail(email.getText().toString()).get();
+                    User user = database.userDao().getUserByEmail(email.getText().toString()).get();
                     if (user != null && user.getPassword().equals(password.getText().toString())) {
                         Gson gson = new Gson();
                         String userJson = gson.toJson(user);
@@ -63,9 +63,8 @@ public class LoginFragment extends Fragment {
 
                         Toast.makeText(getActivity(), "Welcome", Toast.LENGTH_SHORT).show();
 
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frameInPortail, new ProfileFragment())
-                                .commit();
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
                     } else
                         Toast.makeText(getActivity(), "Wrong credentials", Toast.LENGTH_LONG).show();
                 }
