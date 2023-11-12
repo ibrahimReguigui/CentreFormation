@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.centre_formation.R;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.User;
+import com.example.centre_formation.fragment.LoginFragment;
 import com.google.android.material.button.MaterialButton;
 
 public class Registration extends AppCompatActivity {
@@ -33,10 +34,7 @@ public class Registration extends AppCompatActivity {
         MaterialButton btnRegister = findViewById(R.id.btnRegister);
         TextView goToLogin = findViewById(R.id.goToLogin);
 
-        goToLogin.setOnClickListener(e -> {
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-        });
+
 
         btnRegister.setOnClickListener(e -> {
             if (!password.getText().toString().equals(repassword.getText().toString())) {
@@ -56,8 +54,7 @@ public class Registration extends AppCompatActivity {
                     protected void onPostExecute(Void aVoid) {
                         // Display registration success message and navigate to login activity
                         Toast.makeText(Registration.this, "Registration successful", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(Registration.this, Login.class);
-                        startActivity(intent);
+
                     }
                 }.execute();
             }
