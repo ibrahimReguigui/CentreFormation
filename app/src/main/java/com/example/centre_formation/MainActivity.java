@@ -101,6 +101,12 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 }
+                if (item.getItemId() == R.id.formationInMenu) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new ProfileFragment()).commit();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
                 if (item.getItemId() == R.id.coursInMenu) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, new CoursFragment()).commit();
