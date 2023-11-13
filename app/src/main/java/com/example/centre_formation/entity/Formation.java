@@ -4,11 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(tableName = "formation_table")
 
-public class Formation {
+public class Formation implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -20,24 +21,24 @@ public class Formation {
     private String description;
 
     @ColumnInfo(name = "dateDebut")
-    private Date dateDebut;
+    private String dateDebut;
 
     @ColumnInfo(name = "dateFin")
-    private Date dateFin;
+    private String dateFin;
 
     // Default constructor
     public Formation() {
     }
 
     // Constructor with all fields
-    public Formation(int id, String titre, String description, Date dateDebut, Date dateFin) {
+    public Formation(int id, String titre, String description, String dateDebut, String dateFin) {
         this.id = id;
         this.titre = titre;
         this.description = description;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
     }
-    public Formation( String titre, String description, Date dateDebut, Date dateFin) {
+    public Formation( String titre, String description, String dateDebut, String dateFin) {
         this.titre = titre;
         this.description = description;
         this.dateDebut = dateDebut;
@@ -70,20 +71,29 @@ public class Formation {
         this.description = description;
     }
 
-    public Date getDateDebut() {
+    public String getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public String getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(String dateFin) {
         this.dateFin = dateFin;
+    }
+    @Override
+    public String toString() {
+        return "Formation" + id +
+
+                ":titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", dateDebut='" + dateDebut + '\'' +
+                ", dateFin='" + dateFin + '\'';
     }
 
 

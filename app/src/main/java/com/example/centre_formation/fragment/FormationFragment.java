@@ -50,28 +50,21 @@ public class FormationFragment extends Fragment {
 
         add = view.findViewById(R.id.btnFormation);
 
+
         add.setOnClickListener(e -> {
-            try {
-                String title = titre.getText().toString();
-                String descriptionText = description.getText().toString();
-                String startDateString = dateD.getText().toString();
-                String endDateString = dateF.getText().toString();
+            String title = titre.getText().toString();
+            String descriptionText = description.getText().toString();
+            String startDateString = dateD.getText().toString();
+            String endDateString = dateF.getText().toString();
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
 
-                Date startDate = dateFormat.parse(startDateString);
-                Date endDate = dateFormat.parse(endDateString);
 
-                Formation formation = new Formation(title, descriptionText, startDate, endDate);
+            Formation formation = new Formation(title, descriptionText, startDateString, endDateString);
 
-                database.formationDao().addFormation(formation);
+            database.formationDao().addFormation(formation);
 
-                Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_LONG).show();
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-                // Handle the case where date parsing fails
-                Toast.makeText(getActivity(), "Invalid date format", Toast.LENGTH_LONG).show();
-            }
+            Toast.makeText(getActivity(), "Registration successful", Toast.LENGTH_LONG).show();
         });
 
         return view;

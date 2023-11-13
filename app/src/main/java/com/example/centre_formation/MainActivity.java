@@ -20,6 +20,9 @@ import com.example.centre_formation.entity.User;
 import com.example.centre_formation.fragment.ConnectedHomeFragment;
 import com.example.centre_formation.fragment.CoursFragment;
 import com.example.centre_formation.fragment.FormationFragment;
+
+import com.example.centre_formation.fragment.ListFormation;
+
 import com.example.centre_formation.fragment.ProfileFragment;
 import com.example.centre_formation.fragment.listeCours;
 import com.google.android.material.navigation.NavigationView;
@@ -105,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (item.getItemId() == R.id.formationInMenu) {
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, new FormationFragment()).commit();
+                            .replace(R.id.fragment_container, new ListFormation()).commit();
+
+
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 }
