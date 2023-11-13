@@ -23,4 +23,7 @@ public interface UserDao {
     Optional<User> getUserByEmail(String email);
     @Update
     void updateUser(User user);
+
+    @Update
+    void updateUserWithImage(User user);
 }

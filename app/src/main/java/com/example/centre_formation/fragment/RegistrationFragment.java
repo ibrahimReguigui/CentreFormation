@@ -126,8 +126,7 @@ public class RegistrationFragment extends Fragment {
             if (!hasError) {
                 User user = new User(firstName.getText().toString(), lastName.getText().toString(), "adresse",
                         "true", "classe", email.getText().toString(), Integer.parseInt(phoneNumber.getText().toString())
-                        , "STUDENT", password.getText().toString());
-
+                        , "STUDENT", password.getText().toString(),null);
                 if (checkedRadioButtonId == R.id.radioButtonStudentInRegistrationfrag) {
                     user.setRole("Student");
                 } else

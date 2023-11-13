@@ -27,6 +27,29 @@ public class User {
     private String role;
     @ColumnInfo(name = "password")
     private String password;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image=null;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public User(String firstName, String lastName, String adress, String status, String insritEn, String email, int phoneNumber, String role, String password, byte[] image) {
+        this.firstName = firstName;
+        LastName = lastName;
+        this.adress = adress;
+        this.status = status;
+        this.insritEn = insritEn;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.password = password;
+        this.image = image;
+    }
 
     public User() {
     }
