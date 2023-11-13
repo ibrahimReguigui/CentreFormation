@@ -15,11 +15,17 @@ public interface CoursDao {
 
     @Insert
     void addCours(Cours cours);
+
     @Delete
     void deleteCours(Cours cours);
+
     @Query("SELECT * FROM cours_table")
     List<Cours> getAllCours();
+
+    // Change the return type to List<String> since you're selecting only 'titre'
+
+
     @Update
     void UpdateCours(Cours user);
-
 }
+

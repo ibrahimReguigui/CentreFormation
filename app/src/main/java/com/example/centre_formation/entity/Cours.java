@@ -4,9 +4,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "cours_table")
 
-public class Cours {
+public class Cours implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "titre")
@@ -70,6 +72,10 @@ public class Cours {
         Francais,
         Geo,
         Histoire
+    }
+    @Override
+    public String toString() {
+        return "Titre: " + titre + "\nContenu: " + contenu + "\nMatière: " + matiere.toString();
     }
 
 }
