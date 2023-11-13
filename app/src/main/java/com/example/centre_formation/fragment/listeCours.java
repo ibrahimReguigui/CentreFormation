@@ -49,6 +49,7 @@ public class listeCours extends Fragment {
         SharedPreferences.Editor editor = myPref.edit();
         database = AppDataBase.getAppDatabase(getActivity());
         listView = view.findViewById(R.id.listView);
+        Button addButton = view.findViewById(R.id.addButton);
         if (listView == null) {
             throw new IllegalStateException("ListView not found in layout");
         }
@@ -56,8 +57,22 @@ public class listeCours extends Fragment {
         List<Cours> coursList = database.coursDao().getAllCours();
         CoursListAdapter adapter = new CoursListAdapter(getContext(), R.layout.liste_item_cours, coursList);
         listView.setAdapter(adapter);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAddFragment();
+            }
+        });
+
 
         return view;
+    }
+    private void openAddFragment() {
+        // Remplacez le fragment actuel par le fragment d'ajout
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new CoursFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 
