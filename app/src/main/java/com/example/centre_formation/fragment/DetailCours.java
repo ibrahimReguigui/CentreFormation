@@ -5,14 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,43 +18,32 @@ import com.example.centre_formation.R;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.Cours;
 
-import java.io.Serializable;
 import java.util.List;
 
 
-public class listeCours extends Fragment {
+public class DetailCours extends Fragment {
     SharedPreferences myPref;
     AppDataBase database;
-    private Button addButton;
-    private TextView textViewTitle;
-    private Button detailsButton;
-
-    private ListView listView;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        database = AppDataBase.getAppDatabase(getActivity());
-    }
+    private TextView textViewDetail;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_liste_cours, container, false);
+        View view = inflater.inflate(R.layout.fragment_detail_cours, container, false);
         myPref = getActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = myPref.edit();
         database = AppDataBase.getAppDatabase(getActivity());
-        listView = view.findViewById(R.id.listView);
-        if (listView == null) {
-            throw new IllegalStateException("ListView not found in layout");
+
+        // Récupérez l'objet Cours passé
+        Cours cours = (Cours) getArguments().getSerializable("cours");
+
+        // Affichez les détails dans le TextView
+        textViewDetail = view.findViewById(R.id.textViewDetail); // Assurez-vous que ce TextView est défini dans votre XML
+        if (cours != null) {
+            textViewDetail.setText(cours.toString()); // Mettez en forme comme vous le souhaitez
         }
 
-        List<Cours> coursList = database.coursDao().getAllCours();
-        CoursListAdapter adapter = new CoursListAdapter(getContext(), R.layout.liste_item_cours, coursList);
-        listView.setAdapter(adapter);
-
         return view;
+
     }
-
-
 }
