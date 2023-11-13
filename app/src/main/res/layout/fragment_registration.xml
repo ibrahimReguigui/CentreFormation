@@ -10,7 +10,7 @@
         android:id="@+id/registrationtextInRegistrationfrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:text="Registration"
         android:textColor="@color/white"
@@ -35,6 +35,19 @@
         android:textColorHint="@color/white" />
 
     <EditText
+        android:id="@+id/lastNameInRegistrationfrag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstNameInRegistrationfrag"
+        android:layout_margin="10dp"
+        android:background="#30ffffff"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawablePadding="20dp"
+        android:hint="Last Name"
+        android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+    <EditText
         android:id="@+id/emailInRegistrationfrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,15 +65,15 @@
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/lastNameInRegistrationfrag"
+        android:id="@+id/phoneNumberInRegistrationfrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/firstNameInRegistrationfrag"
+        android:layout_below="@id/emailInRegistrationfrag"
         android:layout_margin="10dp"
         android:background="#30ffffff"
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="20dp"
-        android:hint="Last Name"
+        android:hint="Phone Number"
         android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
@@ -69,7 +82,7 @@
         android:id="@+id/passwordInRegistrationfrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/emailInRegistrationfrag"
+        android:layout_below="@id/phoneNumberInRegistrationfrag"
         android:layout_margin="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -108,11 +121,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/repasswordInRegistrationfrag"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal"
+        android:checkedButton="@id/radioButtonStudentInRegistrationfrag">
 
         <RadioButton
             android:id="@+id/radioButtonStudentInRegistrationfrag"
