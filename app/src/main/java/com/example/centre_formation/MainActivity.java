@@ -21,6 +21,7 @@ import com.example.centre_formation.fragment.ConnectedHomeFragment;
 import com.example.centre_formation.fragment.EventFragment;
 import com.example.centre_formation.fragment.ProfileFragment;
 import com.example.centre_formation.fragment.fragment_addEvent;
+import com.example.centre_formation.fragment.updateEvent_Fragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
@@ -110,12 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
 
-                if (item.getItemId() == R.id.addeventInMenu) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, new fragment_addEvent()).commit();
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    return true;
-                }
+
 
                 if (item.getItemId() == R.id.logoutInMenu) {
                     editor.clear();

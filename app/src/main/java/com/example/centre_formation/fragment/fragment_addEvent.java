@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,15 @@ import android.widget.Toast;
 
 import com.example.centre_formation.MainActivity;
 import com.example.centre_formation.R;
+import com.example.centre_formation.dao.EventDao;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.Event;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class fragment_addEvent extends Fragment {
+    private EventDao eventDao;
+    private EditText eventNameEditText, descriptionEditText, numberOfPeopleEditText, addressEditText;
 
     SharedPreferences myPref;
 
@@ -31,6 +35,7 @@ public class fragment_addEvent extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         database = AppDataBase.getAppDatabase(getActivity());
+        eventDao = AppDataBase.getAppDatabase(requireContext()).eventDao();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,26 +54,23 @@ public class fragment_addEvent extends Fragment {
         EditText addressEditText = view.findViewById(R.id.addressEditText);
         Button sendButton = view.findViewById(R.id.sendButton);
 
-        // Handle button click event
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get values from the input fields
+
                 String eventName = eventNameEditText.getText().toString();
                 String description = descriptionEditText.getText().toString();
                 String numberOfPeople = numberOfPeopleEditText.getText().toString();
                 String address = addressEditText.getText().toString();
 
-                // Create a new Event object
                 Event event = new Event(eventName, description, numberOfPeople, address);
 
-                // Add the event to the database
                 database.eventDao().addEvent(event);
 
-                // Show a success message
+
                 Toast.makeText(getActivity(), "Event added successfully", Toast.LENGTH_SHORT).show();
 
-                // Clear the input fields
                 eventNameEditText.setText("");
                 descriptionEditText.setText("");
                 numberOfPeopleEditText.setText("");
@@ -76,6 +78,11 @@ public class fragment_addEvent extends Fragment {
             }
         });
 
+
+
         return view;
     }
+
+
+
 }

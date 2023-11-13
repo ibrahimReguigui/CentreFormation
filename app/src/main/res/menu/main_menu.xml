@@ -15,9 +15,6 @@
             android:icon="@drawable/baseline_emoji_events_24"
             android:title="Event"/>
 
-        <item android:id="@+id/addeventInMenu"
-            android:icon="@drawable/baseline_add_to_photos_24"
-            android:title="ADD Event"/>
 
         <item android:id="@+id/logoutInMenu"
             android:icon="@drawable/baseline_logout_24"

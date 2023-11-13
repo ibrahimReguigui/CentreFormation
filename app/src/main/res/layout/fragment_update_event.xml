@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back2"
+    tools:context=".fragment.UpdateEvent">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:id="@+id/editTexteventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Titre"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextdescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTexteventName"
+        android:hint="Contenu"
+        android:inputType="textMultiLine"
+        android:gravity="top" />
+    <EditText
+        android:id="@+id/editTextnumberOfPeople"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextdescription"
+        android:hint="Contenu"
+        android:inputType="textMultiLine"
+        android:gravity="top" />
+    <EditText
+        android:id="@+id/editTextaddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextnumberOfPeople"
+        android:hint="Contenu"
+        android:inputType="textMultiLine"
+        android:gravity="top" />
+
+
+    <!-- Ajoutez d'autres EditText pour d'autres informations si nécessaire -->
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextaddress"
+        android:text="Sauvegarder"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>

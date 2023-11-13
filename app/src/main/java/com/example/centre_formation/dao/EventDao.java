@@ -18,6 +18,9 @@ public interface EventDao {
     @Query("SELECT * FROM event")
     List<Event> getAllEvents();
 
+    @Query("SELECT * FROM event WHERE eventName = :eventName LIMIT 1")
+    Event getEventByName(String eventName);
+
     @Delete
     void deleteEvent(Event event);
 

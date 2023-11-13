@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "Event")
-public class Event {
+public class Event implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int idEvent;
@@ -67,4 +69,13 @@ public class Event {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Event"+ idEvent +
+                ": eventName='" + eventName + '\'' +
+                ", description='" + description + '\'' +
+                ", numberOfPeople='" + numberOfPeople + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
