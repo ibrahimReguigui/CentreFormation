@@ -60,11 +60,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:hint="date de debut"
+
         android:background="#30ffffff"
         android:drawablePadding="20dp"
-        android:ems="10"
-        android:inputType="date"
-        android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
@@ -79,10 +78,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
+        android:hint="date de debut"
         android:drawablePadding="20dp"
-        android:ems="10"
-        android:inputType="date"
-        android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
