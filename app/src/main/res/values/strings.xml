@@ -11,5 +11,6 @@
     <string name="errorInvalidLastName">Last Name has to have min 3 caracter</string>
     <string name="errorInvalidPhoneNumber">Invalid Phone Number</string>
     <string name="errorInvalidPassword">Enter a valid password (Upper,lower case and number,length min 4)</string>
+    <string name="passwordEmpty">Passwords can\'t be empty</string>
 
 </resources>
