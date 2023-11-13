@@ -12,35 +12,49 @@
         android:layout_height="wrap_content"
         android:text="Sign up"
         android:id="@+id/goToRegister"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign in"
         android:id="@+id/goToLogin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/goToRegister"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/goToAjoutProf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Professor"
+        app:layout_constraintTop_toBottomOf="@id/goToLogin"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/btnViewProfs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Professors"
+        app:layout_constraintTop_toBottomOf="@id/goToAjoutProf"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
         android:id="@+id/logoutmain"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/user"
         android:text="Not logged in"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoutmain"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-
-  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

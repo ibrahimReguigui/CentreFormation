@@ -12,9 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CentreFormation"
         tools:targetApi="31">
+
+        <!-- Existing activities -->
+        <activity
+            android:name=".activity.AjoutProf"
+            android:exported="false" />
         <activity
             android:name=".test"
             android:exported="false" />
+        <activity android:name=".activity.ProfListActivity" />
         <activity
             android:name=".activity.Profile"
             android:exported="false" />
@@ -29,10 +35,15 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- New activity for updating professor details -->
+        <activity
+            android:name=".activity.UpdateProfActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

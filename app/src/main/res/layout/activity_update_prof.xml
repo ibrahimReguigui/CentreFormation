@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Input field for Professor's Name -->
+    <EditText
+        android:id="@+id/editTextProfName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:padding="12dp" />
+
+    <!-- Input field for Professor's Surname -->
+    <EditText
+        android:id="@+id/editTextProfSurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="Surname"
+        android:inputType="textPersonName"
+        android:padding="12dp" />
+
+    <!-- Input field for Professor's Subject -->
+    <EditText
+        android:id="@+id/editTextProfSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="Subject"
+        android:inputType="text"
+        android:padding="12dp" />
+
+    <!-- Input field for Professor's Classes -->
+    <EditText
+        android:id="@+id/editTextProfClasses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="Classes"
+        android:inputType="text"
+        android:padding="12dp" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="Save"
+        android:layout_gravity="center_horizontal"
+        android:padding="12dp" />
+
+</LinearLayout>
