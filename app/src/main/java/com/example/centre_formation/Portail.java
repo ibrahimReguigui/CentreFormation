@@ -71,6 +71,7 @@ public class Portail extends AppCompatActivity {
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 }
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             }
