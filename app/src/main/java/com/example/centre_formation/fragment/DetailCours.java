@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,23 +27,53 @@ public class DetailCours extends Fragment {
     SharedPreferences myPref;
     AppDataBase database;
     private TextView textViewDetail;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    private Button buttonUpdate;
+    private Button buttonDelete;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail_cours, container, false);
         myPref = getActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = myPref.edit();
         database = AppDataBase.getAppDatabase(getActivity());
 
-        // Récupérez l'objet Cours passé
         Cours cours = (Cours) getArguments().getSerializable("cours");
-
-        // Affichez les détails dans le TextView
-        textViewDetail = view.findViewById(R.id.textViewDetail); // Assurez-vous que ce TextView est défini dans votre XML
+        textViewDetail = view.findViewById(R.id.textViewDetail);
         if (cours != null) {
-            textViewDetail.setText(cours.toString()); // Mettez en forme comme vous le souhaitez
+            textViewDetail.setText(cours.toString());
         }
+
+        Button buttonUpdate = view.findViewById(R.id.buttonUpdate);
+        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateCours updateCoursFragment = new UpdateCours();
+
+                // Passez l'objet Cours actuel au nouveau fragment
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("cours", cours);
+                updateCoursFragment.setArguments(bundle);
+
+                // Effectuez la transaction pour afficher le nouveau fragment
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, updateCoursFragment)
+                        .addToBackStack(null)
+                        .commit() ;
+            }
+        });
+
+        Button buttonDelete = view.findViewById(R.id.buttonDelete);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        database.coursDao().deleteCours(cours); // Assurez-vous que votre DAO a une méthode delete
+                    }
+                }).start();
+
+                // Retournez à l'écran précédent
+                AppCompatActivity activity = (AppCompatActivity) getContext();
+                activity.getSupportFragmentManager().popBackStack();            }
+        });
 
         return view;
 

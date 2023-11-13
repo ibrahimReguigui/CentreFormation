@@ -11,4 +11,21 @@
         android:textSize="16sp" />
 
 
+    <Button
+        android:id="@+id/buttonUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mettre à jour"
+        android:layout_below="@id/textViewDetail"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Supprimer"
+        android:layout_below="@id/textViewDetail"
+        android:layout_toEndOf="@id/buttonUpdate"/>
+
+
 </RelativeLayout>
