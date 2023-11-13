@@ -23,14 +23,15 @@
         android:hint="Contenu"
         android:inputType="textMultiLine"
         android:gravity="top" />
-    <EditText
+
+    <Spinner
         android:id="@+id/editTextMatiere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextContenu"
-        android:hint="Contenu"
-        android:inputType="textMultiLine"
-        android:gravity="top" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
 
     <!-- Ajoutez d'autres EditText pour d'autres informations si nécessaire -->
 

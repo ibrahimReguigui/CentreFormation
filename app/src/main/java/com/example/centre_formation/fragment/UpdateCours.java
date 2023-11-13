@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +24,9 @@ import com.example.centre_formation.entity.Cours;
 public class UpdateCours extends Fragment {
     SharedPreferences myPref;
     private Cours cours;
-    EditText editTextTitre,editTextContenu,editTextMatiere;
+    Spinner editTextMatiere;
+
+    EditText editTextTitre,editTextContenu;
 
     AppDataBase database;
 
@@ -37,13 +41,16 @@ public class UpdateCours extends Fragment {
         editTextTitre = view.findViewById(R.id.editTextTitre);
         editTextContenu = view.findViewById(R.id.editTextContenu);
         editTextMatiere = view.findViewById(R.id.editTextMatiere);
-        // ... initialisez d'autres champs ...
 
+        // Populate the spinner with your enum values
+        ArrayAdapter<Cours.Matiere> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, Cours.Matiere.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        editTextMatiere.setAdapter(adapter);
         if (cours != null) {
             editTextTitre.setText(cours.getTitre());
             editTextContenu.setText(cours.getContenu());
-            editTextMatiere.setText(cours.getMatiere().name());
-            // ... mettez à jour d'autres champs ...
+            // Set the selected item in the spinner
+            editTextMatiere.setSelection(cours.getMatiere().ordinal());
         }
 
         Button buttonSave = view.findViewById(R.id.buttonSave);
@@ -61,8 +68,8 @@ public class UpdateCours extends Fragment {
         // Mettez à jour l'objet cours avec de nouvelles valeurs
         cours.setTitre(editTextTitre.getText().toString());
         cours.setContenu(editTextContenu.getText().toString());
-        cours.setMatiere(Cours.Matiere.valueOf(editTextMatiere.getText().toString()));
-        // ... autres mises à jour ...
+        String selectedMatiere = editTextMatiere.getSelectedItem().toString();
+        cours.setMatiere(Cours.Matiere.valueOf(selectedMatiere));        // ... autres mises à jour ...
 
         // Sauvegardez le cours mis à jour dans la base de données dans un thread séparé
         new Thread(new Runnable() {
