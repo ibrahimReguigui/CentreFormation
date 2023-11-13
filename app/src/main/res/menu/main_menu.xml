@@ -10,6 +10,14 @@
         <item android:id="@+id/profileInMenu"
             android:icon="@drawable/baseline_person_24"
             android:title="Profile"/>
+
+
+        <item android:id="@+id/eventInMenu"
+            android:icon="@drawable/baseline_emoji_events_24"
+            android:title="Event"/>
+
+
+
         <item android:id="@+id/coursInMenu"
             android:icon="@drawable/baseline_person_24"
             android:title="Cours"/>
@@ -19,6 +27,7 @@
         <item android:id="@+id/logoutInMenu"
             android:icon="@drawable/baseline_logout_24"
             android:title="Logout"/>
+
     </group>
 
 </menu>
