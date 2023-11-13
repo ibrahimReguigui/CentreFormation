@@ -71,5 +71,9 @@ public class Cours {
         Geo,
         Histoire
     }
+    @Override
+    public String toString() {
+        return "Titre: " + titre + "\nContenu: " + contenu + "\nMatière: " + matiere.toString();
+    }
 
 }
