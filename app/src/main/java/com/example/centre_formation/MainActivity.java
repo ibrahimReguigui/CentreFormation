@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         String userJson = shared.getString("connectedUser", "null");
         Gson gson = new Gson();
         User userJS = gson.fromJson(userJson, User.class);
-        userNameInHeader.setText(userJS.getFirstName());
+        userNameInHeader.setText(userJS.getFirstName()+" "+userJS.getLastName());
         userEmailInHeader.setText(userJS.getEmail());
 
 
