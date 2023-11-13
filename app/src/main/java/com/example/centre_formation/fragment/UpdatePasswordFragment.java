@@ -28,7 +28,7 @@ public class UpdatePasswordFragment extends Fragment {
     AppDataBase database;
     TextView name,role,email;
     EditText ancien,newpass,retype;
-    Button btn;
+    Button btn,cancel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,11 +57,19 @@ public class UpdatePasswordFragment extends Fragment {
         ancien=view.findViewById(R.id.ancientPasswordInUpdatePass);
         newpass=view.findViewById(R.id.newPasswordInUpdatePass);
         retype=view.findViewById(R.id.retypeInUpdatePass);
-        btn=view.findViewById(R.id.btnInUpdatePassword);
+        btn=view.findViewById(R.id.btnUpdateInUpdatePassword);
+        cancel=view.findViewById(R.id.btnCancelInupdatePassword);
 
         String errorPasswordMismatch = getString(R.string.error_password_mismatch);
         String passwordEmpty = getString(R.string.passwordEmpty);
         String errorInvalidPassword = getString(R.string.errorInvalidPassword);
+        String wrongPassword = getString(R.string.wrongpassword);
+
+        cancel.setOnClickListener(e->{
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new ProfileFragment())
+                    .commit();
+        });
 
         btn.setOnClickListener(e->{
 
@@ -71,7 +79,7 @@ public class UpdatePasswordFragment extends Fragment {
             boolean hasError = false;
 
             if (!ancien.getText().toString().equals(user.getPassword())) {
-                Toast.makeText(getActivity(), "Wrong Password", Toast.LENGTH_SHORT).show();
+                ancien.setError(wrongPassword);
                 hasError = true;
             }
             if (TextUtils.isEmpty(ancien.getText())) {
@@ -83,8 +91,6 @@ public class UpdatePasswordFragment extends Fragment {
                 newpass.setError(errorInvalidPassword);
                 hasError = true;
             }
-
-
             if (!newpass.getText().toString().equals(retype.getText().toString())) {
                 retype.setError(errorPasswordMismatch);
                 hasError = true;
@@ -92,6 +98,12 @@ public class UpdatePasswordFragment extends Fragment {
             if (!hasError) {
                 user.setPassword(newpass.getText().toString());
                 database.userDao().updateUser(user);
+
+                String userAfterModif = gson.toJson(user);
+                editor.putString("connectedUser", userAfterModif);
+                editor.commit();
+
+                Toast.makeText(getActivity(), "Password modified successfully", Toast.LENGTH_SHORT).show();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new ProfileFragment())
                         .commit();

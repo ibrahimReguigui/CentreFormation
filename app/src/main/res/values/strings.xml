@@ -12,5 +12,6 @@
     <string name="errorInvalidPhoneNumber">Invalid Phone Number</string>
     <string name="errorInvalidPassword">Enter a valid password (Upper,lower case and number,length min 4)</string>
     <string name="passwordEmpty">Passwords can\'t be empty</string>
+    <string name="wrongpassword">Wrong Password</string>
 
 </resources>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.centre_formation.MainActivity;
@@ -20,6 +21,8 @@ public class ProfileFragment extends Fragment {
     SharedPreferences myPref;
     AppDataBase database;
     TextView name,role,email,first,last,adresse,phoneNumber;
+
+    Button btnPassword,btnUpdateProfile,btnUpdateImage;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,9 @@ public class ProfileFragment extends Fragment {
         name=view.findViewById(R.id.nameInProfile);
         role=view.findViewById(R.id.roleInProfile);
         phoneNumber=view.findViewById(R.id.phoneInProfile);
+        btnPassword=view.findViewById(R.id.button2);
+        btnUpdateImage=view.findViewById(R.id.button5);
+        btnUpdateProfile=view.findViewById(R.id.button4);
 
         first.setText(user.getFirstName());
         last.setText(user.getLastName());
@@ -54,6 +60,12 @@ public class ProfileFragment extends Fragment {
         name.setText(user.getFirstName()+" "+user.getLastName());
         role.setText(user.getRole());
         phoneNumber.setText(String.valueOf(user.getPhoneNumber()));
+
+        btnPassword.setOnClickListener(e->{
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new UpdatePasswordFragment())
+                    .commit();
+        });
 
         return view;
     }
