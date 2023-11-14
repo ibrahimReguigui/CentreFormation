@@ -3,29 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2">
+    android:background="@drawable/pp"
+    android:layout_gravity="center"
+
+    >
 
     <TextView
         android:id="@+id/textViewDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        />
 
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mettre à jour"
         android:layout_below="@id/textViewDetail"
-        android:layout_alignParentStart="true"/>
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="271dp"
+        android:text="Mettre à jour"
+
+        />
 
     <Button
         android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Supprimer"
         android:layout_below="@id/textViewDetail"
-        android:layout_toEndOf="@id/buttonUpdate"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-123dp"
+        android:layout_marginTop="361dp"
+        android:layout_toEndOf="@id/buttonUpdate"
+
+        android:text="Supprimer" />
 
 
 </RelativeLayout>

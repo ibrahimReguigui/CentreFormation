@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2"
+    android:background="@drawable/pp"
     tools:context=".fragment.FormationFragment">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:text="Add Formation"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="35dp"
         android:textStyle="bold" />
 
@@ -26,13 +26,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
-        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:background="#CDF1C9"
+        android:drawableLeft="@drawable/baseline_title_24"
         android:drawablePadding="20dp"
         android:hint="titre"
         android:padding="15dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/description"
@@ -43,29 +43,30 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
+        android:background="#CDF1C9"
+        android:drawableLeft="@drawable/baseline_description_24"
         android:drawablePadding="20dp"
         android:hint="description"
         android:padding="15dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/dateD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/description"
-
+        android:drawableLeft="@drawable/baseline_date_range_24"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:hint="date de debut"
         android:padding="15dp"
-        android:background="#30ffffff"
+        android:background="#CDF1C9"
         android:drawablePadding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/dateF"
@@ -73,16 +74,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dateD"
         android:padding="15dp"
-
+        android:drawableLeft="@drawable/baseline_date_range_24"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
+        android:background="#CDF1C9"
         android:hint="date de debut"
         android:drawablePadding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnFormation"
@@ -90,9 +91,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dateF"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="Add" />
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="90dp"
+        android:text="Add"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 </RelativeLayout>

@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2"
+    android:background="@drawable/pp"
     tools:context=".fragment.UpdateFormation">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <EditText
         android:id="@+id/editTextTitre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/editTextDescription"
@@ -19,14 +22,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextTitre"
         android:inputType="textMultiLine"
-        android:gravity="top" />
+        android:gravity="top"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        />
     <EditText
         android:id="@+id/editTextDateD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextDescription"
         android:inputType="textMultiLine"
-        android:gravity="top" />
+        android:gravity="top"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/editTextDateF"
@@ -34,9 +43,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextDateD"
         android:inputType="textMultiLine"
-        android:gravity="top" />
+        android:gravity="top"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        />
 
-    <!-- Ajoutez d'autres EditText pour d'autres informations si nécessaire -->
 
     <Button
         android:id="@+id/buttonSave"
@@ -45,6 +56,10 @@
         android:layout_below="@id/editTextDateD"
         android:text="Sauvegarder"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_margin="120dp"
+        />
 
 </RelativeLayout>

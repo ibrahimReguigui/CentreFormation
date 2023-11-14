@@ -3,8 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2"
+    android:background="@drawable/pp"
     tools:context=".fragment.ListFormation">
+
+    <LinearLayout
+        android:id="@+id/cardViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+
+        >
 
     <ListView
         android:id="@+id/listView"
@@ -14,6 +23,12 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add" />
+        android:text="Add"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+
+        />
+
+    </LinearLayout>
 
 </RelativeLayout>

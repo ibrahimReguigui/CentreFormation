@@ -77,8 +77,8 @@
 
                         <ImageView
                             android:id="@+id/imageView7"
-                            android:layout_width="600dp"
-                            android:layout_height="190dp"
+                            android:layout_width="800dp"
+                            android:layout_height="300dp"
                             android:src="@drawable/circles"
                             android:visibility="visible"
                             app:layout_constraintEnd_toEndOf="parent"
