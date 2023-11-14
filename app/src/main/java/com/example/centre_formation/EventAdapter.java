@@ -34,7 +34,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         View listItem = convertView;
 
         if (listItem == null) {
-            listItem = LayoutInflater.from(context).inflate(R.layout.event_item_layout, parent, false);
+            listItem = LayoutInflater.from(context).inflate(R.layout.liste_item_event, parent, false);
         }
 
         Event currentEvent = getItem(position);
