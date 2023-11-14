@@ -29,4 +29,11 @@ public interface UserDao {
 
     @Query("SELECT image FROM user_table WHERE id = :userId")
     byte[] getImage(int userId);
+
+    @Query("UPDATE user_table SET adress = :newAdress, firstName = :newFirstName, lastName = :newLastName, phoneNumber = :newPhoneNumber WHERE id = :userId")
+    void updateUserDetails(int userId, String newAdress, String newFirstName, String newLastName, int newPhoneNumber);
+
+    @Query("UPDATE user_table SET password = :newPassword WHERE id = :userId")
+    void updateUserPassword(int userId, String newPassword);
+
 }
