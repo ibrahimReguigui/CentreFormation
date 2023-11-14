@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.centre_formation.MainActivity;
+import com.example.centre_formation.PasswordUtils;
 import com.example.centre_formation.R;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.User;
@@ -51,7 +52,7 @@ public class LoginFragment extends Fragment {
 
         btnLogin.setOnClickListener(e -> {
                     User user = database.userDao().getUserByEmail(email.getText().toString()).get();
-                    if (user != null && user.getPassword().equals(password.getText().toString())) {
+                    if (user != null && PasswordUtils.checkPassword(password.getText().toString(),user.getPassword())) {
                         Gson gson = new Gson();
                         String userJson = gson.toJson(user);
 
