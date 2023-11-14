@@ -86,31 +86,42 @@ public class ProfileFragment extends Fragment {
         role.setText(user.getRole());
         phoneNumber.setText(String.valueOf(user.getPhoneNumber()));
 
-        if (user.getImage() != null)
-            imgi.setImageBitmap(BitmapFactory.decodeByteArray(user.getImage(), 0, user.getImage().length));
 
-        btnPassword.setOnClickListener(e -> {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new UpdatePasswordFragment())
-                    .commit();
-        });
-        btnUpdateProfile.setOnClickListener(e -> {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new UpdateProfileFragment())
-                    .commit();
-        });
+        byte[] image = database.userDao().getImage(user.getId());
+        if(image!=null){
+            Bitmap imagebit=BitmapFactory.decodeByteArray(image, 0, image.length);
+            imgi.setImageBitmap(imagebit);
+        }
 
 
-        btnUpdateImage.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(intent, PICK_IMAGE_REQUEST);
-        });
+        btnPassword.setOnClickListener(e ->
+
+    {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new UpdatePasswordFragment())
+                .commit();
+    });
+        btnUpdateProfile.setOnClickListener(e ->
+
+    {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new UpdateProfileFragment())
+                .commit();
+    });
+
+
+        btnUpdateImage.setOnClickListener(v ->
+
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    });
 
 
         return view;
-    }
+}
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -124,7 +135,7 @@ public class ProfileFragment extends Fragment {
                 img.setImageBitmap(imageToStore);
 
                 arrayOutputStream = new ByteArrayOutputStream();
-                imageToStore.compress(Bitmap.CompressFormat.JPEG, 100, arrayOutputStream);
+                imageToStore.compress(Bitmap.CompressFormat.JPEG, 40, arrayOutputStream);
                 byte[] imageInByte = arrayOutputStream.toByteArray();
 
                 myPref = getActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE);
@@ -132,15 +143,12 @@ public class ProfileFragment extends Fragment {
                 Gson gson = new Gson();
                 User user = gson.fromJson(userJson, User.class);
 
-                user.setImage(imageInByte);
-                database.userDao().updateUser(user);
+                database.userDao().updateUserWithImage(user.getId(), imageInByte);
+                user = database.userDao().getUserByEmail(email.getText().toString()).get();
 
+                String userJson2 = gson.toJson(user);
                 SharedPreferences.Editor editor = myPref.edit();
-
-                User userUpdated = database.userDao().getUserByEmail(email.getText().toString()).get();
-                String userUpdatedJson = gson.toJson(userUpdated);
-
-                editor.putString("connectedUser", userUpdatedJson);
+                editor.putString("connectedUser", userJson2);
                 editor.commit();
 
             } catch (IOException e) {

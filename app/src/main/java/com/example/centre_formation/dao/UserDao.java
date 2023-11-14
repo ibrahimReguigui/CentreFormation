@@ -24,6 +24,9 @@ public interface UserDao {
     @Update
     void updateUser(User user);
 
-    @Update
-    void updateUserWithImage(User user);
+    @Query("UPDATE user_table SET image = :image WHERE id = :userId")
+    void updateUserWithImage(int userId, byte[] image);
+
+    @Query("SELECT image FROM user_table WHERE id = :userId")
+    byte[] getImage(int userId);
 }

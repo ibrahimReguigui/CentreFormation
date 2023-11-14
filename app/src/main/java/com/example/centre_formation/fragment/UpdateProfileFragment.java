@@ -2,6 +2,8 @@ package com.example.centre_formation.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +33,9 @@ public class UpdateProfileFragment extends Fragment {
     AppDataBase database;
     TextView name,role,email;
     EditText first,last,adresse,phoneNumber;
+
+    ImageView img, imgi;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,7 @@ public class UpdateProfileFragment extends Fragment {
         phoneNumber=view.findViewById(R.id.phoneInProfile);
         btn=view.findViewById(R.id.button2);
         cancel=view.findViewById(R.id.button5);
+        imgi = view.findViewById(R.id.imageViewInProfile);
 
         first.setText(connectedUser.getFirstName());
         last.setText(connectedUser.getLastName());
@@ -72,6 +79,14 @@ public class UpdateProfileFragment extends Fragment {
         String errorInvalidFirstName = getString(R.string.errorInvalidFirstName);
         String errorInvalidLastName = getString(R.string.errorInvalidLastName);
         String errorInvalidPhoneNumber = getString(R.string.errorInvalidPhoneNumber);
+
+
+        User user = gson.fromJson(userJson, User.class);
+        byte[] image = database.userDao().getImage(user.getId());
+        if(image!=null){
+            Bitmap imagebit= BitmapFactory.decodeByteArray(image, 0, image.length);
+            imgi.setImageBitmap(imagebit);
+        }
 
         cancel.setOnClickListener(e->{
             getActivity().getSupportFragmentManager().beginTransaction()

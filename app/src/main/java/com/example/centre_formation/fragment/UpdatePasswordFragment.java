@@ -2,6 +2,8 @@ package com.example.centre_formation.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,7 @@ public class UpdatePasswordFragment extends Fragment {
     TextView name,role,email;
     EditText ancien,newpass,retype;
     Button btn,cancel;
+    ImageView imgi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,11 +63,23 @@ public class UpdatePasswordFragment extends Fragment {
         retype=view.findViewById(R.id.retypeInUpdatePass);
         btn=view.findViewById(R.id.btnUpdateInUpdatePassword);
         cancel=view.findViewById(R.id.btnCancelInupdatePassword);
+        imgi = view.findViewById(R.id.imageViewInProfile);
+
+        name.setText(user.getFirstName()+" "+user.getLastName());
+        role.setText(user.getRole());
+        email.setText(user.getEmail());
 
         String errorPasswordMismatch = getString(R.string.error_password_mismatch);
         String passwordEmpty = getString(R.string.passwordEmpty);
         String errorInvalidPassword = getString(R.string.errorInvalidPassword);
         String wrongPassword = getString(R.string.wrongpassword);
+
+
+        byte[] image = database.userDao().getImage(user.getId());
+        if(image!=null){
+            Bitmap imagebit= BitmapFactory.decodeByteArray(image, 0, image.length);
+            imgi.setImageBitmap(imagebit);
+        }
 
         cancel.setOnClickListener(e->{
             getActivity().getSupportFragmentManager().beginTransaction()
