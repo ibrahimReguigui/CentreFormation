@@ -119,18 +119,17 @@ public class UpdateProfileFragment extends Fragment {
 
             if (!hasError) {
 
-                connectedUser.setAdress(adresse.getText().toString());
-                connectedUser.setFirstName(first.getText().toString());
-                connectedUser.setLastName(last.getText().toString());
-                connectedUser.setPhoneNumber(Integer.valueOf(phoneNumber.getText().toString()));
+                database.userDao().updateUserDetails(user.getId(), adresse.getText().toString()
+                        , first.getText().toString(), last.getText().toString(),
+                        Integer.valueOf(phoneNumber.getText().toString()));
 
-                database.userDao().updateUser(connectedUser);
+                User userAfterUpdate = database.userDao().getUserByEmail(email.getText().toString()).get();
 
-                String userAfterModif = gson.toJson(connectedUser);
-                editor.putString("connectedUser", userAfterModif);
+                String userJson2 = gson.toJson(userAfterUpdate);
+                editor.putString("connectedUser", userJson2);
                 editor.commit();
 
-                Toast.makeText(getActivity(), "Profile updated", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Profile updated", Toast.LENGTH_SHORT).show();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new ProfileFragment())
                         .commit();

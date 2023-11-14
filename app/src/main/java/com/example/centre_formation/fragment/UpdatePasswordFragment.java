@@ -112,11 +112,12 @@ public class UpdatePasswordFragment extends Fragment {
                 hasError = true;
             }
             if (!hasError) {
-                user.setPassword(newpass.getText().toString());
-                database.userDao().updateUser(user);
+                database.userDao().updateUserPassword(user.getId(),newpass.getText().toString());
 
-                String userAfterModif = gson.toJson(user);
-                editor.putString("connectedUser", userAfterModif);
+                User userAfterUpdate = database.userDao().getUserByEmail(email.getText().toString()).get();
+
+                String userJson2 = gson.toJson(userAfterUpdate);
+                editor.putString("connectedUser", userJson2);
                 editor.commit();
 
                 Toast.makeText(getActivity(), "Password modified successfully", Toast.LENGTH_SHORT).show();
