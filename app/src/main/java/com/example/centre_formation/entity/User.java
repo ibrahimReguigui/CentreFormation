@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Arrays;
+
 @Entity(tableName = "user_table")
 public class User {
     @PrimaryKey(autoGenerate = true)
@@ -27,8 +29,25 @@ public class User {
     private String role;
     @ColumnInfo(name = "password")
     private String password;
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    @ColumnInfo(name = "image",typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", LastName='" + LastName + '\'' +
+                ", adress='" + adress + '\'' +
+                ", status='" + status + '\'' +
+                ", insritEn='" + insritEn + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
+                ", image=" + Arrays.toString(image) +
+                '}';
+    }
 
     public byte[] getImage() {
         return image=null;
