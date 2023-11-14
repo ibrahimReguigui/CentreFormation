@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.centre_formation.PasswordUtils;
 import com.example.centre_formation.R;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.User;
@@ -126,7 +127,7 @@ public class RegistrationFragment extends Fragment {
             if (!hasError) {
                 User user = new User(firstName.getText().toString(), lastName.getText().toString(), "adresse",
                         "true", "classe", email.getText().toString(), Integer.parseInt(phoneNumber.getText().toString())
-                        , "STUDENT", password.getText().toString(),null);
+                        , "STUDENT", PasswordUtils.hashPassword(password.getText().toString()),null);
                 if (checkedRadioButtonId == R.id.radioButtonStudentInRegistrationfrag) {
                     user.setRole("Student");
                 } else

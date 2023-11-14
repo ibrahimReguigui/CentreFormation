@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.centre_formation.MainActivity;
+import com.example.centre_formation.PasswordUtils;
 import com.example.centre_formation.R;
 import com.example.centre_formation.database.AppDataBase;
 import com.example.centre_formation.entity.User;
@@ -94,7 +95,7 @@ public class UpdatePasswordFragment extends Fragment {
             ancien.setError(null);
             boolean hasError = false;
 
-            if (!ancien.getText().toString().equals(user.getPassword())) {
+            if (!PasswordUtils.checkPassword(ancien.getText().toString(),user.getPassword())) {
                 ancien.setError(wrongPassword);
                 hasError = true;
             }
@@ -112,7 +113,8 @@ public class UpdatePasswordFragment extends Fragment {
                 hasError = true;
             }
             if (!hasError) {
-                database.userDao().updateUserPassword(user.getId(),newpass.getText().toString());
+                database.userDao().updateUserPassword(user.getId(),PasswordUtils.hashPassword(
+                        newpass.getText().toString()));
 
                 User userAfterUpdate = database.userDao().getUserByEmail(email.getText().toString()).get();
 
